@@ -7,12 +7,15 @@ from typing import Optional
 import streamlit as st
 from couchbase.analytics import AnalyticsScanConsistency
 from couchbase.auth import PasswordAuthenticator
-from couchbase.cluster import (
+
+from couchbase.exceptions import CouchbaseException
+from dotenv import load_dotenv
+from couchbase.options import (
     AnalyticsOptions,
-    Cluster,
     ClusterOptions,
     ClusterTimeoutOptions,
 )
+from couchbase.cluster import Cluster
 from couchbase.exceptions import CouchbaseException
 from dotenv import load_dotenv
 
@@ -34,12 +37,12 @@ def get_db_connection() -> Cluster:
     timeout_options = ClusterTimeoutOptions(
         kv_timeout=timedelta(seconds=5),
         query_timeout=timedelta(seconds=300),
-        # analytics_timeout=timedelta(seconds=600),
+        analytics_timeout=timedelta(seconds=600),
     )
 
     # Get a connection to our cluster
     cluster = Cluster.connect(
-        f"couchbase://{DB_HOST}?analytics_timeout=1000",
+        f"couchbase://{DB_HOST}",
         ClusterOptions(auth, timeout_options=timeout_options),
     )
 

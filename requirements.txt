@@ -2,6 +2,7 @@ couchbase==3.2.7
 python-dotenv==0.20.0
 sentencepiece==0.1.96
 shiv==1.0.1
-streamlit==1.9.0
+streamlit==1.14.1
 transformers==4.19.2
 torch==1.11.0
+sacremoses==4.64.1

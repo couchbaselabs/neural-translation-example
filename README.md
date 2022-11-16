@@ -4,7 +4,7 @@
 
 - Couchbase can be run as a Docker container
 
-  `docker run -d -p 8091-8094:8091-8094 -p 11210:11210 --name ml_db couchbase`
+  `docker run -d -p 8091-8096:8091-8096 -p 11210:11210 --name ml_db couchbase`
 
 - Setting Up
 
@@ -41,11 +41,11 @@
 
 - Log in to Docker Container running Couchbase
 
-  `docker exec -it bash`
+  `docker exec -it ml_db bash`
 
 - Deploy the model into Couchbase Analytics Service
 
-  `cd temp`
+  `cd /tmp`
 
   `curl -v -X POST -F "data=@./trans-lib.pyz" -F "type=python" "localhost:8095/analytics/library/Default/translib" -u <username>:<password>;`
 
